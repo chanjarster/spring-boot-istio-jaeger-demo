@@ -1,0 +1,15 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: loo-svc
+  redis:
+    host: ${REDIS_HOST:redis}
+  port: ${REDIS_PORT:6379}
+
+opentracing:
+  jaeger:
+    enable-b3-propagation: true
+    udp-sender:
+      host: ${JAEGER_UDP_SENDER_HOST:localhost}

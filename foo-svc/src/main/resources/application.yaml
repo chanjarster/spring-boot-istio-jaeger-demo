@@ -1,0 +1,15 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+bar-svc:
+  url: ${BAR_SVC_URL:http://bar-svc:8080}
+
+opentracing:
+  jaeger:
+    enable-b3-propagation: true
+    udp-sender:
+      host: ${JAEGER_UDP_SENDER_HOST:localhost}
+
+spring:
+  application:
+    name: foo-svc

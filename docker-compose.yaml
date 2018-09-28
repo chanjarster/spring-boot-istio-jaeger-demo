@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  redis:
+    image: bitnami/redis:latest
+    environment:
+      ALLOW_EMPTY_PASSWORD: 'yes'
+  jaeger:
+    image: jaegertracing/all-in-one:1.6
+    ports:
+      - 16686:16686
+  foo-svc:
+    image: chanjarster/spring-boot-istio-jaeger-demo-foo-svc:0.1.0
+    environment:
+      JAEGER_UDP_SENDER_HOST: jaeger
+    ports:
+      - 8080:8080
+    links:
+      - bar-svc
+      - redis
+      - jaeger
+  bar-svc:
+    image: chanjarster/spring-boot-istio-jaeger-demo-bar-svc:0.1.0
+    environment:
+      JAEGER_UDP_SENDER_HOST: jaeger
+    links:
+    - loo-svc
+    - redis
+    - jaeger
+  loo-svc:
+    image: chanjarster/spring-boot-istio-jaeger-demo-loo-svc:0.1.0
+    environment:
+      JAEGER_UDP_SENDER_HOST: jaeger
+    links:
+    - redis
+    - jaeger
+
