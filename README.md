@@ -51,7 +51,7 @@ Spring Boot项目利用Jaeger做分布式Tracing的例子。
    1. 通过Istio Gateway暴露：`curl http://istio-test.<hostname>/sb-jaeger-tracing-demo/`
 1. 访问`jaeger-query`
 
-正常来说，你会发现通过nginx ingress访问的时候并不记录tracing。只有通过Istio Gateway访问的时候才会记录tracing，大致样子如下：
+正常来说，你会发现通过nginx ingress访问的时候并不记录tracing（见[Issue #7963][istio-issue-7963]）。只有通过Istio Gateway访问的时候才会记录tracing，大致样子如下：
 
 ![Figure-2](assets/figure-2.png)
 
@@ -90,3 +90,4 @@ Spring Boot项目利用Jaeger做分布式Tracing的例子。
 [opentracing java-spring-web]:https://github.com/opentracing-contrib/java-spring-web
 [opentracing java-spring-cloud]:https://github.com/opentracing-contrib/java-spring-cloud
 [opentracing java]: https://github.com/opentracing-contrib?utf8=%E2%9C%93&q=&type=&language=java
+[istio-issue-7963]: https://github.com/istio/istio/issues/7963
