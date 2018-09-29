@@ -1,5 +1,6 @@
 package me.chanjar.istio_jaeger.loo;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpHeaders;
@@ -43,7 +44,7 @@ public class GreetingController {
       List<String> headerValues = headers.getValuesAsList(headerName);
       sb.append('\t')
           .append(headerName).append(": ")
-          .append(headerValues.toString()).append('\n');
+          .append(StringUtils.join(headerValues, ',')).append('\n');
     }
 
     return sb.toString();
