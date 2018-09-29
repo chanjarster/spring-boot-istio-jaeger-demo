@@ -17,3 +17,6 @@ opentracing:
     enable-b3-propagation: true
     udp-sender:
       host: ${JAEGER_UDP_SENDER_HOST:localhost}
+  spring:
+    web:
+      enabled: ${OPENTRACING_SPRING_WEB_ENABLED:true}
