@@ -80,14 +80,17 @@ Spring Boot项目利用Jaeger做分布式Tracing的例子。
 
 其实本项目没有做什么事情，都是使用了开源项目来利用Jaeger做tracing的，相关的项目如下：
 
-* [opentracing java-spring-jaeger][opentracing java-spring-jaeger]
-  * [opentracing java-spring-web][opentracing java-spring-web]
-  * [opentracing java-spring-cloud][opentracing java-spring-cloud]
-* [更多opentracing java instrumentation][opentracing java]
+* [OpenTracing java-spring-jaeger][opentracing java-spring-jaeger]
+  * [OpenTracing java-spring-web][opentracing java-spring-web]
+  * [OpenTracing java-spring-cloud][opentracing java-spring-cloud]
+* [更多OpenTracing java instrumentation][opentracing java]
+* [OpenTracing Tutorial - Java][opentracing-tutorial-java]
+
 
 [k8s-learn-istio-install]: https://github.com/chanjarster/k8s-learn/tree/master/addons-guide/istio/install
 [opentracing java-spring-jaeger]: https://github.com/opentracing-contrib/java-spring-jaeger
 [opentracing java-spring-web]:https://github.com/opentracing-contrib/java-spring-web
 [opentracing java-spring-cloud]:https://github.com/opentracing-contrib/java-spring-cloud
 [opentracing java]: https://github.com/opentracing-contrib?utf8=%E2%9C%93&q=&type=&language=java
+[opentracing-tutorial-java]: https://github.com/yurishkuro/opentracing-tutorial/tree/master/java
 [istio-issue-7963]: https://github.com/istio/istio/issues/7963
