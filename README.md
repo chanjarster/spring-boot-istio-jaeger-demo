@@ -58,6 +58,8 @@ Spring Boot项目利用Jaeger做分布式Tracing的例子。
 你会发现比起本地运行的tracing多了很多层级，刨除istio相关component的tracing，大体上和本地运行的tracing差不多，但是多了一些层级。
 这些多出来的层级是由于istio自动注入的envoy sidecar产生的。
 
+注意在`01-namespace.yaml`里的这段配置：`JAEGER_UDP_SENDER_HOST: jaeger-agent.istio-system.svc.cluster.local`，这个是istio的jaeger-agent的cluster DNS name。
+
 **清理**
 
 到`k8s`目录下，执行`kubectl delete -f .`
