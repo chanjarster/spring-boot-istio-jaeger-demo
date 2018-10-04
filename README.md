@@ -25,8 +25,35 @@ Spring Boot项目利用Jaeger做分布式Tracing的例子。
 
 ![Figure-1](assets/figure-1.png)
 
-你可以看到HTTP请求还有数据库请求，但是看不到Redis请求，这是因为目前用的[opentracing java-spring-jaeger][opentracing java-spring-jaeger]
-还没有提供Redis的instrumentation。
+**关于Redis的Tracing**
+
+目前[opentracing java-spring-jaeger][opentracing java-spring-jaeger]还没有提供`spring-data-redis`的Auto Configuration，因此需要自己引入[opentracing java-redis-client][opentracing java-redis-client]项目。
+
+本例子是使用`BeanPostProcessor`来instrument的，见`RedisConnectionFactoryBeanPostProcessor.java`：
+
+```java
+@Component
+public class RedisConnectionFactoryBeanPostProcessor implements BeanPostProcessor {
+
+  private Tracer tracer;
+
+  public RedisConnectionFactoryBeanPostProcessor(Tracer tracer) {
+    this.tracer = tracer;
+  }
+
+  @Override
+  public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    if (bean instanceof RedisConnectionFactory) {
+      return new TracingRedisConnectionFactory((RedisConnectionFactory) bean, false, tracer);
+    }
+    return bean;
+  }
+
+}
+```
+
+不过对[opentracing java-redis-client][opentracing java-redis-client]的源代码观察发现，似乎并不是`RedisConnection`和`ReactiveRedisConnection`的所有操作都会做tracing。
+特别是`ReactiveRedisConnection`，几乎所有操作都没有做tracing（写本文是[opentracing java-redis-client][opentracing java-redis-client]版本0.0.8）。
 
 **清理**
 
@@ -98,3 +125,4 @@ Spring Boot项目利用Jaeger做分布式Tracing的例子。
 [opentracing-tutorial-java]: https://github.com/yurishkuro/opentracing-tutorial/tree/master/java
 [istio-issue-7963]: https://github.com/istio/istio/issues/7963
 [opentracing-java]: https://github.com/opentracing/opentracing-java
+[opentracing java-redis-client]: https://github.com/opentracing-contrib/java-redis-client

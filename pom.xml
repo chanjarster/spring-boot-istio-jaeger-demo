@@ -18,7 +18,7 @@
     <java.version>1.8</java.version>
     <dockerfile-maven-plugin.version>1.4.4</dockerfile-maven-plugin.version>
     <opentracing-spring-jaeger.version>0.2.1</opentracing-spring-jaeger.version>
-    <opentracing-redis-client.version>0.0.7</opentracing-redis-client.version>
+    <opentracing-redis-client.version>0.0.8</opentracing-redis-client.version>
   </properties>
 
   <modules>
