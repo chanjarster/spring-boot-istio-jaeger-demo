@@ -3,6 +3,8 @@ package me.chanjar.istio_jaeger.foo;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.util.MimeType;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +18,7 @@ public class IndexController {
   @Autowired
   private BarGreetingService barGreetingService;
 
-  @RequestMapping("/")
+  @RequestMapping(value = "/", produces = MimeTypeUtils.TEXT_PLAIN_VALUE)
   public String index(@RequestHeader HttpHeaders headers) {
 
     return headers(headers) + barGreetingService.greeting();
